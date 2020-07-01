@@ -25,10 +25,10 @@ set undodir=~/.vim/undodir
 call plug#begin()
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-sensible'
-Plug 'tpope/surround'
 Plug 'tpope/vim-fugitive'
 Plug 'jremmen/vim-ripgrep'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-airline/vim-airline'
 Plug 'mbbill/undotree'
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -60,6 +60,9 @@ endif
 
 hi Pmenu ctermfg=White ctermbg=235
 hi PmenuSel ctermfg=Black ctermbg=White
+hi ColorColumn ctermbg=235
+"" Checks silently for local vim config
+silent! so .vimlocal
 
 "" Set tab keys to match bracket pairs
 nnoremap <tab> %
@@ -85,15 +88,13 @@ nnoremap <leader>= :wincmd =<CR>
 "" Save 
 nnoremap <leader>s :w<CR>
 
-"" ,w to split window v and start editing
-nnoremap <leader>w <C-w>v<C-w>l
-
 "" Mimic forward and backward normal operation
 nnoremap <leader>[ <C-o>
 nnoremap <leader>] <C-i>
-nnoremap <leader>u :UndotreeShow<CR>
+nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <leader>1 :NERDTreeToggle<CR> 
 nnoremap <Leader>ps :Rg<SPACE>
+nnoremap <Leader>ef :CocFix<CR>
 
 "" Space Tab to write and save
 nnoremap <leader><Tab> :w!<CR>
@@ -111,6 +112,8 @@ nmap <leader>g] <Plug>(coc-diagnostic-next)
 nmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader><Tab>l :CocCommand prettier.formatFile<CR>
 nnoremap <leader>cr :CocRestart
+nnoremap <leader>cf :CocFix<CR>
+nnoremap <leader>di :CocList diagnostics<CR>
 
 nnoremap <leader>nh :noh<CR>
 " Sweet Sweet FuGITive
